@@ -3,7 +3,7 @@ class Demo {
         int x=9,y=3, z=14;
         compareTwoValues(x,y);
         compareThreeValues(x,y,z);
-        ternaryOps(x,y);
+        ternaryOps(x);
     }
 
     public static void compareTwoValues(int x,int y) {
@@ -30,8 +30,8 @@ class Demo {
             System.out.println("z: "+z);
     }
 
-    public static void ternaryOps(int a, int b) {
-        String result = a%2 == 0 ? "Even number" : "Odd number";
-        System.out.println("Printing Even or Odd number: "+result);
+    public static void ternaryOps(int a) {
+        String result = a%2 == 0 ? "Even number: "+a : "Odd number: "+a;
+        System.out.println("Printing Even or Odd number--> "+result);
     }
 }
