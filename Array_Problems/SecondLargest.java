@@ -7,21 +7,23 @@ public class SecondLargest {
   public static int findSecondLargest(int[]arr) {
 
     int largest = arr[0];
-    int secLargest = arr[0];
+    int secLargest = Integer.MIN_VALUE;
 
-    int result = Arrays.stream(arr).distinct().count() == 1 ? 0:1;
+    if(arr.length == 1)
+      throw new IllegalArgumentException("Array contains only one element.");
 
-    if(arr.length == 1 || result == 0)
-      return 0;
+    int distinctCount = Arrays.stream(arr).distinct().count() == 1 ? 0:1;
+
+    if (distinctCount == 1) {
+      throw new IllegalArgumentException("All elements in the array having same numbers.");
+    }
 
     for(int number:arr) {
 
       if(number>largest) {
         secLargest = largest;
         largest = number;
-      }
-
-      if(number>secLargest && number!=largest) {
+      } else if(number>secLargest && number!=largest) {
         secLargest = number;
       }
 
@@ -33,12 +35,11 @@ public class SecondLargest {
 
     int arrays[] = {12, 35, 1, 10, 34, 1,35};
 
-    int result = findSecondLargest(arrays);
-
-    if(result == 0) {
-      System.out.println("Array list might contains same numbers or one element");
-    } else {
+    try {
+      int result = findSecondLargest(arrays);
       System.out.println(result);
+    } catch (Exception e) {
+      System.out.println("Error "+e.getMessage());
     }
   }
   
