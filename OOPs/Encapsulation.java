@@ -6,12 +6,12 @@ class BankAccount {
 
   public boolean withdraw(double amount) {
 
-    if(amount <= 0) {
+    if (amount <= 0) {
       System.out.println("Amount cannot be negative");
       return false;
     }
 
-    if(amount > balance) {
+    if (amount > balance) {
       System.out.println("Insuffiecent Balance");
       return false;
     }
@@ -21,7 +21,7 @@ class BankAccount {
   }
 
   public void deposit(double amount) {
-    if(amount <= 0) {
+    if (amount <= 0) {
       System.out.println("Cannot deposit this amount. Please check the amount");
     }
     balance += amount;
@@ -38,12 +38,12 @@ public class Encapsulation {
 
   public static void main(String[] args) {
 
-   BankAccount bank = new BankAccount();
-   bank.deposit(500);
-   bank.withdraw(200);
-   double result = bank.getBalance();
-   System.out.println("Remainig Balance: "+result);
+    BankAccount bank = new BankAccount();
+    bank.deposit(500);
+    bank.withdraw(200);
+    double result = bank.getBalance();
+    System.out.println("Remainig Balance: " + result);
 
   }
-  
+
 }
