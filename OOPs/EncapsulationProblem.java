@@ -5,6 +5,8 @@ class BankAccountStatement {
   private String accountHoldername;
   private double balance;
 
+  private String accountType;
+
   BankAccountStatement(String name, double initialBalance) {
 
     if (name.isEmpty()) {
@@ -23,8 +25,27 @@ class BankAccountStatement {
 
     this.accountHoldername = name;
     this.balance = initialBalance;
+    this.accountType = "Savings";
+    System.out.println("Default saving account type: "+getAccountType());
 
   }
+
+    BankAccountStatement(String name, double initialBalance, String accountType) {
+
+      this(name, initialBalance);
+
+      if(!accountType.equals("Savings") && !accountType.equals("Current") && !accountType.endsWith("Premium")) {
+        System.out.println("Error: Invalid account type. Use Savings, Current, or Premium");
+        return;
+      }
+
+      this.accountType = accountType;
+      System.out.println("Account type updated to: " + accountType);
+    }
+
+  
+
+  
 
   public void deposit(double amount) {
 
@@ -39,15 +60,26 @@ class BankAccountStatement {
 
   public void withdraw(double amount) {
 
-    if (amount > balance) {
-      System.out.println("Error: Withdrawal amount must be positive.");
-      return;
-    }
-
     if (amount < 0) {
       System.out.println("Error: Insufficient balance. Your balance is: "+balance);
       return;
     }
+
+    if (amount > balance) {
+      System.out.println("Error: Insufficient balance. Your balance is: " + balance);
+      return;
+    }
+
+    if (accountType.equals("Savings") && amount > 5000) {
+        System.out.println("Error: Exceeds Savings limit of $5,000 per withdrawal");
+        return;
+    }
+
+    if (accountType.equals("Current") && amount > 10000) {
+        System.out.println("Error: Exceeds Current limit of $10,000 per withdrawal");
+        return;
+    }
+
 
     balance -= amount;
     System.out.println("Successfully withdrawn: " + amount);
@@ -62,6 +94,10 @@ class BankAccountStatement {
     return accountHoldername;
   }
 
+  public String getAccountType() {
+    return accountType;
+  }
+
 }
 
 public class EncapsulationProblem {
@@ -72,28 +108,30 @@ public class EncapsulationProblem {
     bank.deposit(200);
     bank.withdraw(500);
 
-    System.out.println("\n--- Test 1: Valid Operations ---");
-        bank.deposit(200);
-        System.out.println("Balance: " + bank.getBalance());
-        
-        bank.withdraw(500);
-        System.out.println("Balance: " + bank.getBalance());
+   System.out.println("=== TEST 1: Two-parameter constructor ===");
+        BankAccountStatement account1 = new BankAccountStatement("Alice", 10000);
+        System.out.println("Type: " + account1.getAccountType());
+        System.out.println();
 
-        System.out.println("\n--- Test 2: Invalid Deposit ---");
-        bank.deposit(-100);  //Should be rejected
-        System.out.println("Balance: " + bank.getBalance());
+        System.out.println("=== TEST 2: Three-parameter constructor (Savings) ===");
+        BankAccountStatement account2 = new BankAccountStatement("Bob", 20000, "Savings");
+        account2.withdraw(6000);
+        System.out.println();
 
-        System.out.println("\n--- Test 3: Invalid Withdrawal (Negative) ---");
-        bank.withdraw(-500);  //Should be rejected
-        System.out.println("Balance: " + bank.getBalance());
+        System.out.println("=== TEST 3: Three-parameter constructor (Current) ===");
+        BankAccountStatement account3 = new BankAccountStatement("Charlie", 30000, "Current");
+        account3.withdraw(12000); 
+        System.out.println();
 
-        System.out.println("\n--- Test 4: Invalid Withdrawal (Insufficient Funds) ---");
-        bank.withdraw(5000);  //Should be rejected
-        System.out.println("Balance: " + bank.getBalance());
+        System.out.println("=== TEST 4: Three-parameter constructor (Premium) ===");
+        BankAccountStatement account4 = new BankAccountStatement("David", 50000, "Premium");
+        account4.withdraw(25000);
+        System.out.println("Balance: " + account4.getBalance());
+        System.out.println();
 
-        System.out.println("\n--- Final Status ---");
-        System.out.println("Account holder: " + bank.getAccountHolderName());
-        System.out.println("Final balance: " + bank.getBalance());
+        System.out.println("=== TEST 5: Invalid account type ===");
+        BankAccountStatement account5 = new BankAccountStatement("Eve", 5000, "VIP");
+        System.out.println("Type: " + account5.getAccountType());
     }
 }
 
