@@ -35,6 +35,7 @@ class BankAccount {
 public class Encapsulation {
 
   // Hiding the data, showing only reqiured data to the user.
+ // It means using private variables with public getter/setter methods to control how data is accessed and modified.
 
   public static void main(String[] args) {
 

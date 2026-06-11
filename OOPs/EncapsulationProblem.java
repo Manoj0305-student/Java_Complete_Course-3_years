@@ -4,8 +4,9 @@ class BankAccountStatement {
 
   private String accountHoldername;
   private double balance;
-
   private String accountType;
+  private double interestRate;
+  private String accountStatus;
 
   BankAccountStatement(String name, double initialBalance) {
 
@@ -30,21 +31,34 @@ class BankAccountStatement {
 
   }
 
-    BankAccountStatement(String name, double initialBalance, String accountType) {
+  BankAccountStatement(String name, double initialBalance, String accountType) {
 
-      this(name, initialBalance);
+    this(name, initialBalance);
 
-      if(!accountType.equals("Savings") && !accountType.equals("Current") && !accountType.endsWith("Premium")) {
-        System.out.println("Error: Invalid account type. Use Savings, Current, or Premium");
-        return;
-      }
-
-      this.accountType = accountType;
-      System.out.println("Account type updated to: " + accountType);
+    if(!accountType.equals("Savings") && !accountType.equals("Current") && !accountType.equals("Premium")) {
+      System.out.println("Error: Invalid account type. Use Savings, Current, or Premium");
+      this.interestRate = getInterestRateByType("Savings");
+      return;
     }
 
-  
+    this.accountType = accountType;
+    System.out.println("Account type updated to: " + accountType);
+  }
 
+  
+  private double getInterestRateByType(String type) {
+    return switch (type) {
+      case "Savings" -> 4.0;
+      case "Current" -> 1.0;
+      case "Premium" -> 6.0;
+      default -> 0;
+    };
+  }
+
+  public double getInterestRate(double initialBalance) {
+    balance = initialBalance * (this.interestRate/100);
+    return balance;
+  }
   
 
   public void deposit(double amount) {
