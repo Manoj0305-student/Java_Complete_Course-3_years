@@ -1,4 +1,4 @@
-package OOPs;
+package OOPs.Encap;
 
 class BankAccount {
 
@@ -32,14 +32,14 @@ class BankAccount {
   }
 }
 
-public class Encapsulation2 {
+public class Encapsulation {
 
-  // Hiding data using private variables and controlling access through public methods.
+  // Hiding the data, showing only reqiured data to the user.
  // It means using private variables with public getter/setter methods to control how data is accessed and modified.
 
   public static void main(String[] args) {
 
-    BankAccount bank = new BankAccount();
+    BankAccount2 bank = new BankAccount2();
     bank.deposit(500);
     bank.withdraw(200);
     double result = bank.getBalance();

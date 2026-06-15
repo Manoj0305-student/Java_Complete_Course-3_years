@@ -1,4 +1,4 @@
-package OOPs;
+package OOPs.Encap;
 
 /* Hiding internal data using the private variables having controlled access
 to user through the public methods that is getter and setter method is known as
