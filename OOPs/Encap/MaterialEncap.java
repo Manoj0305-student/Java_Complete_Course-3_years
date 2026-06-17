@@ -4,12 +4,12 @@ package OOPs.Encap;
 to user through the public methods that is getter and setter method is known as
 Encapsulation
  */
-public class Material {
+public class MaterialEncap {
 
     private String materialID;
     private double emissionFactor;
 
-    Material(String materialId, double newFactor) {
+    MaterialEncap(String materialId, double newFactor) {
 
         this.materialID = materialId;
         this.emissionFactor = newFactor;
@@ -36,7 +36,7 @@ public class Material {
     }
 
     public static void main(String[] args) {
-       Material encap = new Material("Mat001", 100);
+       MaterialEncap encap = new MaterialEncap("Mat001", 100);
 
        encap.setEmissionFactor(1000);
     }
