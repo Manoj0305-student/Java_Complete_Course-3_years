@@ -1,0 +1,12 @@
+1. why Java blocks multiple inheritance?
+
+=> Mutiple inheritance is not possible using classes because it creates ambiquity
+   that is diamond problem as we know by the definition of inheritance we are 
+   acquiring the properties from the parent class if we have same method behiviour
+   in two parent class then base class will get confuse which method to use.
+
+2. what is default access modifier in interface?
+
+=> In an interface, the default access modifier for methods is public abstract, and 
+   for variables it is public static final — Java applies these automatically 
+   even if you don't write them.
