@@ -1,4 +1,4 @@
-package Arrays;
+package arrays;
 
 public class CheckArrayIsSortedOrNot {
     
@@ -12,7 +12,7 @@ public class CheckArrayIsSortedOrNot {
     }
 
     public static void main(String[] args) {
-        int arr [] = {1,2,3,4,5};
+        int arr [] = {1,2,4,5,6,5};
         System.out.println(sortedArray(arr));
     }
 }
